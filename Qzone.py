@@ -13,12 +13,12 @@ sys.setdefaultencoding('utf8')
 def insert_one(data,qq):
 	if (data["shuos"].strip()!=''):
 		f = open("%s.txt"%qq,'ab+')
-		string = "QQ:%s 时间: %s 说说:%s\r\n"%(data["qq"],data["time"].encode('gb18030'),data["shuos"].encode('gb18030'))
+		string = "%s 说说:%s\r\n"%(data["time"].encode('gb18030'),data["shuos"].encode('gb18030'))
 		f.write(string)
 		f.close()
 
 def go(qq):
-	driver = webdriver.Chrome()
+	driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe')
 	driver.implicitly_wait(10)
 	driver.get('http://user.qzone.qq.com/{}/311'.format(qq))
 	try:
@@ -32,9 +32,9 @@ def go(qq):
 		driver.switch_to.frame("login_frame")
 		driver.find_element_by_id('switcher_plogin').click()
 		driver.find_element_by_id('u').clear()
-		driver.find_element_by_id('u').send_keys(QQ账号)
+		driver.find_element_by_id('u').send_keys(504281906)
 		driver.find_element_by_id('p').clear()
-		driver.find_element_by_id('p').send_keys("QQ密码")
+		driver.find_element_by_id('p').send_keys("ywh&&zhouzhuo")
 		driver.find_element_by_id('login_button').click()
 	try:
 		WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID,"QM_OwnerInfo_Icon")))
@@ -48,7 +48,8 @@ def go(qq):
 		content = driver.find_elements_by_css_selector('.content')
 		stime = driver.find_elements_by_css_selector('.c_tx.c_tx3.goDetail')
 		for con,sti in zip(content,stime):
-			print con.text,sti.text
+			# gbkTypeStr = unicodeTypeStr.encode(“GBK“, ‘ignore’);
+			# print con.text,sti.text
 			data = {
 					'qq':qq,
 					'time':sti.text,
@@ -74,7 +75,7 @@ def go(qq):
 			content = driver.find_elements_by_css_selector('.content')
 			stime = driver.find_elements_by_css_selector('.c_tx.c_tx3.goDetail')
 			for con,sti in zip(content,stime):
-				print con.text,sti.text
+				# print con.text,sti.text
 				data = {
 						'qq':qq,
 						'time':sti.text,
