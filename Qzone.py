@@ -34,7 +34,7 @@ def go(qq):
 		driver.find_element_by_id('u').clear()
 		driver.find_element_by_id('u').send_keys(504281906)
 		driver.find_element_by_id('p').clear()
-		driver.find_element_by_id('p').send_keys("ywh&&zhouzhuo")
+		driver.find_element_by_id('p').send_keys("hh&&zhouzhuo")
 		driver.find_element_by_id('login_button').click()
 	try:
 		WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID,"QM_OwnerInfo_Icon")))
