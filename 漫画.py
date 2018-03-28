@@ -1,14 +1,10 @@
 #coding:utf-8
-import scrapy
 from bs4 import BeautifulSoup
 import urllib2
 import urllib
-import time
 import socket
-import json
 import requests
 import cStringIO
-import image
 import re
 from selenium import webdriver
 import sys
@@ -19,7 +15,7 @@ sys.setdefaultencoding( "utf-8" )
 
 num = 1
 def save_img(num,imgUrl):
-	document = 'D:/modizComics'
+	document = fileName
 	exists = os.path.exists(document)
 	if not exists:
 		os.makedirs(document)
@@ -56,6 +52,7 @@ def save_img(num,imgUrl):
 # headers = { 'User-Agent' : user_agent }
 # 'http://www.chuixue.net/manhua/26798/'  
 url = raw_input(u'输入吹雪漫画主页地址:'.encode('gbk'))
+fileName = raw_input(u'输入存放本地文件夹地址:'.encode('gbk'))
 req = urllib2.Request(url)
 response = urllib2.urlopen(req)
 content = response.read();
@@ -114,11 +111,3 @@ for url in chapterList:
 			# print>>f,imgUrl
 driver.quit()
 # f.close()
-
-
-
-
-
-
-
-
