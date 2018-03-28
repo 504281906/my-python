@@ -10,7 +10,7 @@ import sys
 if __name__=='__main__':
 	url=raw_input()
 	driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe')
-	# driver.implicitly_wait(10)
+	driver.implicitly_wait(20)
 	driver.get(url)
 	# driver.get('https://www.baidu.com/')
 	try:
