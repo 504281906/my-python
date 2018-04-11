@@ -105,7 +105,7 @@ def GetAllChapter(url):
 	global chapterList
 	s = 'http://www.chuixue.net'
 	print a.__len__()
-	for i in range(a.__len__()-1,0,-1):
+	for i in range(a.__len__()-1,-1,-1):
 		url = a[i].get('href')
 		if (url!=None):
 			chapterList.append(s+url)
