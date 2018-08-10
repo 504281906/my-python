@@ -1,0 +1,50 @@
+# -*- coding:utf-8 -*-
+import pywintypes
+import xlrd
+import xlwt
+import copy
+import sys
+import re
+import xlutils.copy
+import os
+import xml.dom.minidom
+# reload(sys)
+# sys.setdefaultencoding("utf-8")
+
+def read_excel():
+	data = xlrd.open_workbook("e:/bg.xlsx")
+	files=os.listdir("e:/pc")
+	print len(files)  #
+	for table in data.sheets():
+		name = table.name    #表格名字
+		tempName = name.replace(u'PC ',u'')
+		tempName = tempName.replace(u' ',u'')
+		# isFind = False
+		for fileName in files:
+			if (tempName in fileName):
+				# print fileName + ":" + name
+				# isFind = True
+				
+				break
+				
+		# if (isFind == False):
+			# print "###" + name
+	
+	# table = data.sheet_by_name(u'')
+	# print table.row_values(9)
+	rows = table.nrows
+	ans = []
+	h = re.compile(r'\d') 
+	for i in range(rows):
+		ans.append(table.cell(i,0).value)
+		# ans[i]=ans[i].replace(u'\xa0',u'')
+		# ans[i]=ans[i].replace(u' ',u'')
+		# ans[i]=ans[i].replace(u'、',u'')
+		# ans[i]=h.sub('',ans[i])  
+		# table.put_cell(0, i, 1, ans[i], 0)
+		# print table.cell(i,0).value
+		# print ans[i]  
+	wb = xlutils.copy.copy(data)
+	wb.save("d:/5.xls")
+if __name__ == '__main__':
+     read_excel()
